@@ -2,7 +2,7 @@
   "name": "learn-language",
   "version": "1.0.0",
   "license": "MIT",
-  "description": "LinguaLeap - free W3Schools-style programming tutorials (Angular static site)",
+  "description": "Learn Language - free W3Schools-style programming tutorials (Angular static site)",
   "private": true,
   "scripts": {
     "ng": "ng",

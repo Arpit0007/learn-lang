@@ -1,6 +1,6 @@
 # Architecture
 
-LinguaLeap is a static Angular 18 site, set up as a standard Angular CLI project. There is no server.
+Learn Language is a static Angular 18 site, set up as a standard Angular CLI project. There is no server.
 Courses are TypeScript data compiled into the app, each course in its own
 lazy-loaded chunk, and progress is kept in the browser's `localStorage`.
 

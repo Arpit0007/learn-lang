@@ -1,4 +1,4 @@
-# LinguaLeap
+# Learn Language
 
 Free programming tutorials in the style of W3Schools: HTML, CSS, JavaScript,
 Python, PostgreSQL and NestJS. There is no login and no backend. The site is a
@@ -31,7 +31,7 @@ npm start          # http://localhost:4200
 | `npm start` | Dev server with live reload |
 | `npm test` | Unit and content tests. This includes running every PostgreSQL example, which takes about two minutes |
 | `npm run lint` | ESLint for every project |
-| `npm run build` | Production build, into `dist/lingualeap/browser` |
+| `npm run build` | Production build, into `dist/learn-language/browser` |
 | `npm run check:content` | Checks the HTML, CSS and PostgreSQL lessons against the content rules |
 
 CI (`.github/workflows/ci.yml`) runs `npm run lint`, `npm test` and `npm run build`.

@@ -1,4 +1,4 @@
-// Checks lesson files against the LinguaLeap content rules (used while writing content, and by CI). Run from the repo root:
+// Checks lesson files against the Learn Language content rules (used while writing content, and by CI). Run from the repo root:
 //   node tools/check-lessons.mjs [--web] [--sql] <lesson.ts> [more lesson files...]
 //   --web : HTML/CSS course rules (full documents, no <script>, only example.com URLs, assets exist, safe forms)
 //   --sql : PostgreSQL course: runs every SQL example against the course sample database (PGlite)

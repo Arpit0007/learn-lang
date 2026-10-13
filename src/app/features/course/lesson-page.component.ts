@@ -112,7 +112,7 @@ export class LessonPageComponent {
 
     effect(() => {
       const l = this.lesson();
-      this.title.setTitle(l ? `${plain(l.title)} – LinguaLeap` : 'LinguaLeap');
+      this.title.setTitle(l ? `${plain(l.title)} – Learn Language` : 'Learn Language');
     });
 
     // Finished = every quiz on the page answered right (or nothing to answer).

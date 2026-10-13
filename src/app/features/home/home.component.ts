@@ -51,7 +51,7 @@ export class HomeComponent {
   });
 
   constructor() {
-    inject(Title).setTitle('LinguaLeap — free coding tutorials');
+    inject(Title).setTitle('Learn Language — free coding tutorials');
     for (const entry of this.courses.entries) {
       if (this.progress.doneCount(entry.slug) === 0) continue;
       this.courses.load(entry.slug).then(

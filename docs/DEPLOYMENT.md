@@ -8,7 +8,7 @@ exist but don't.
 
 ```bash
 npm ci
-npm run build                  # → dist/lingualeap/browser
+npm run build                  # → dist/learn-language/browser
 ```
 
 The output includes `/pglite/`: `pglite.wasm`, `pglite.data` and

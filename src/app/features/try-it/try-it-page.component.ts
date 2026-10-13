@@ -11,7 +11,7 @@ const plain = (s: string) => s.replace(/\\(.)/g, '$1').replace(/[*`]/g, '');
 
 /**
  * A srcdoc page takes its base address from the app (<base href="/">), so a jump link like
- * href="#rules" would load the LinguaLeap site inside the preview. Lessons' absolute paths
+ * href="#rules" would load the Learn Language site inside the preview. Lessons' absolute paths
  * (/assets/img/…) need that base, so instead the preview handles #links itself.
  */
 const IN_PAGE_LINKS = `<script>
@@ -97,7 +97,7 @@ export class TryItPageComponent {
 
     effect(() => {
       const t = this.lessonTitle();
-      this.title.setTitle(t ? `Try it: ${t} – LinguaLeap` : 'LinguaLeap');
+      this.title.setTitle(t ? `Try it: ${t} – Learn Language` : 'Learn Language');
     });
   }
 

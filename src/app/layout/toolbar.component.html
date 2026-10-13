@@ -1,5 +1,5 @@
 <mat-toolbar class="bar">
-  <a routerLink="/" class="brand">🦜 LinguaLeap</a>
+  <a routerLink="/" class="brand" aria-label="Learn Language home"><span aria-hidden="true">📚</span> Learn Language</a>
   <nav class="langs" aria-label="Courses">
     @for (c of courses.entries; track c.slug) {
       <a [routerLink]="['/', c.slug]" routerLinkActive="on" ariaCurrentWhenActive="page">{{ c.menuLabel }}</a>
