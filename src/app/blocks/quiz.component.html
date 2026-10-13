@@ -1,0 +1,23 @@
+<div class="quiz">
+  <p class="qt">Quick check</p>
+  <p class="q"><ll-rich [text]="quiz().question" /></p>
+  <div class="opts" role="group" [attr.aria-label]="'Answers'">
+    @for (opt of quiz().options; track $index) {
+      <button type="button" [disabled]="picked() !== null"
+              [class.right]="picked() !== null && $index === quiz().answer"
+              [class.wrong]="picked() === $index && $index !== quiz().answer"
+              (click)="pick($index)">
+        <ll-rich [text]="opt" />
+      </button>
+    }
+  </div>
+  @if (picked() !== null) {
+    <p class="verdict" [class.ok]="picked() === quiz().answer" [class.no]="picked() !== quiz().answer" role="status">
+      {{ picked() === quiz().answer ? '✓ Correct!' : 'Not quite.' }}
+      <button type="button" class="again" (click)="tryAgain()">Try again</button>
+    </p>
+    @if (quiz().why) {
+      <div class="why"><ll-rich [text]="quiz().why" /></div>
+    }
+  }
+</div>

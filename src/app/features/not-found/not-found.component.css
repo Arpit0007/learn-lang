@@ -1,0 +1,5 @@
+.nf { max-width: 60ch; margin: 64px auto; padding: 0 20px; font-family: var(--display); }
+.code { font-family: var(--mono); font-size: 11px; letter-spacing: .16em; color: var(--gold-ink); margin: 0 0 8px; }
+h1 { font-size: 34px; margin: 0 0 12px; letter-spacing: -.02em; }
+p { color: var(--ink-soft); font-family: var(--body); font-size: 17px; }
+a { color: var(--ink); text-decoration-color: var(--gold); text-underline-offset: 3px; font-weight: 600; }

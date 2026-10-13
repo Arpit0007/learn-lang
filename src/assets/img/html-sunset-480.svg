@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 270" width="480" height="270">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f26b5b"/>
+      <stop offset="0.6" stop-color="#f9a65a"/>
+      <stop offset="1" stop-color="#fde3a1"/>
+    </linearGradient>
+    <linearGradient id="lake" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#e9925f"/>
+      <stop offset="1" stop-color="#5b4a7a"/>
+    </linearGradient>
+  </defs>
+  <rect width="480" height="180" fill="url(#sky)"/>
+  <circle cx="240" cy="180" r="46" fill="#fff1b8"/>
+  <path d="M0 180 Q60 140 130 168 T230 180 Z" fill="#6d4c6f"/>
+  <path d="M300 180 Q380 126 480 160 V180 Z" fill="#6d4c6f"/>
+  <rect y="180" width="480" height="90" fill="url(#lake)"/>
+  <g fill="#fff1b8" opacity="0.75">
+    <rect x="196" y="190" width="88" height="5" rx="2.5"/>
+    <rect x="208" y="204" width="64" height="4" rx="2"/>
+    <rect x="220" y="217" width="40" height="4" rx="2"/>
+    <rect x="230" y="230" width="20" height="3" rx="1.5"/>
+  </g>
+  <path d="M90 70 q8-7 16 0 q8-7 16 0 M140 92 q6-5 12 0 q6-5 12 0" fill="none" stroke="#5a3d5c" stroke-width="2.5" stroke-linecap="round"/>
+  <rect x="12" y="12" width="66" height="28" rx="6" fill="#1f2937" fill-opacity="0.8"/>
+  <text x="45" y="32" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#fff" text-anchor="middle">480w</text>
+</svg>

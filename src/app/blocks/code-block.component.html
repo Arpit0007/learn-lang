@@ -1,0 +1,70 @@
+<div class="code">
+  <div class="code-bar">
+    <span class="code-label">{{ block().label || lang() }}</span>
+    @if (block().verdict; as v) {
+      <span class="verdict" [class]="'verdict ' + v">{{ v === 'good' ? '✓ good' : '✗ avoid' }}</span>
+    }
+    <span class="code-acts">
+      @if (runnable()) {
+        <button type="button" class="btn" (click)="editing.set(!editing())">{{ editing() ? 'Done' : 'Edit' }}</button>
+        @if (code() !== block().code) {
+          <button type="button" class="btn" (click)="reset()">Reset</button>
+        }
+      }
+      <button type="button" class="btn" (click)="copy()">{{ copyLabel() }}</button>
+      @if (block().output && !runnable()) {
+        <button type="button" class="btn run" [attr.aria-expanded]="showOutput()" (click)="showOutput.set(!showOutput())">{{ showOutput() ? 'Hide output' : 'Show output' }}</button>
+      }
+      @if (tryItLink(); as link) {
+        <a class="btn run" [routerLink]="link">Try it Yourself »</a>
+      }
+      @if (runnable()) {
+        @if (running() && isSql()) {
+          <button type="button" class="btn" (click)="stopSql()">■ Stop</button>
+        }
+        <button type="button" class="btn run" [disabled]="running()" (click)="run()">{{ running() ? 'Running…' : 'Run ▸' }}</button>
+      }
+    </span>
+  </div>
+
+  <ll-code-editor [code]="code()" [lang]="lang()" [readonly]="!editing()" (codeChange)="code.set($event)" />
+  @if (editing()) {
+    <div class="hint">Editing · Tab indents · press Esc then Tab to leave the editor</div>
+  }
+
+  <!-- A new srcdoc loads a fresh document in the same frame; the runId drops stale messages. -->
+  @if (frame(); as f) {
+    @if (block().demoHtml) {
+      <div class="demo">
+        <span class="demo-tag">sandbox</span>
+        <iframe #frame [title]="'Sandbox for ' + (block().label || 'example')" sandbox="allow-scripts allow-modals"
+                [srcdoc]="f.doc" [style.height.px]="frameHeight()"></iframe>
+      </div>
+    } @else {
+      <iframe #frame class="runner" title="Example runner" aria-hidden="true" tabindex="-1"
+              sandbox="allow-scripts allow-modals" [srcdoc]="f.doc"></iframe>
+    }
+  }
+
+  @if (showOutput()) {
+    <div class="out" aria-live="polite">
+      <div class="oh">output</div>
+      <div class="line">{{ block().output }}</div>
+    </div>
+  }
+
+  @if (ran() && isSql()) {
+    <div class="out" aria-live="polite">
+      <div class="oh">result</div>
+      @if (sqlMessage(); as m) { <div class="line" [class]="'line ' + m.level">{{ m.text }}</div> }
+      @if (sqlResults(); as rs) { <ll-sql-output [results]="rs" /> }
+    </div>
+  } @else if (ran()) {
+    <div class="out" aria-live="polite">
+      <div class="oh">console</div>
+      @for (l of lines(); track $index) {
+        <div class="line" [class]="'line ' + l.level">{{ l.text }}</div>
+      }
+    </div>
+  }
+</div>

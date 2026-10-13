@@ -1,0 +1,158 @@
+:host {
+  display: block;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 0 24px 96px;
+}
+
+.hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+  gap: 48px;
+  align-items: center;
+  padding: 72px 0 56px;
+}
+
+h1 {
+  font-family: var(--display);
+  font-size: clamp(38px, 5.2vw, 64px);
+  line-height: 1;
+  letter-spacing: -.03em;
+  font-weight: 800;
+  margin: 0;
+  max-width: 13ch;
+}
+
+.lede {
+  font-family: var(--body);
+  font-size: 20px;
+  color: var(--ink-soft);
+  line-height: 1.55;
+  max-width: 44ch;
+  margin: 22px 0 28px;
+}
+
+.cta {
+  display: inline-block;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 16px;
+  text-decoration: none;
+  color: #111;
+  background: var(--gold);
+  padding: 12px 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 0 var(--gold-ink);
+}
+
+.cta:hover {
+  filter: brightness(1.05);
+}
+
+.demo {
+  min-width: 0;
+}
+
+.demo ::ng-deep .code {
+  margin: 0;
+  transform: rotate(-.6deg);
+  box-shadow: 0 30px 60px -30px rgba(17, 22, 27, .55), var(--shadow);
+}
+
+.hint {
+  font-family: var(--display);
+  font-size: 13.5px;
+  color: var(--ink-faint);
+  margin: 14px 4px 0;
+}
+
+.courses {
+  border-top: 1px solid var(--line);
+  padding-top: 36px;
+}
+
+h2 {
+  font-family: var(--display);
+  font-size: 22px;
+  letter-spacing: -.01em;
+  margin: 0 0 18px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+  gap: 18px;
+}
+
+.course {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 22px;
+  border-radius: 12px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+}
+
+.course {
+  border-top: 4px solid var(--gold);
+}
+
+h3 {
+  font-family: var(--display);
+  font-size: 26px;
+  letter-spacing: -.02em;
+  margin: 0;
+}
+
+.course p {
+  font-family: var(--body);
+  font-size: 16.5px;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.meter {
+  height: 6px;
+  border-radius: 6px;
+  background: var(--line-soft);
+  overflow: hidden;
+  margin-top: 6px;
+}
+
+.meter span {
+  display: block;
+  height: 100%;
+  background: var(--gold);
+}
+
+.course .progress {
+  font-family: var(--display);
+  font-size: 13px;
+  color: var(--ink-faint);
+}
+
+.go {
+  margin-top: auto;
+  padding-top: 8px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--ink);
+  text-decoration-color: var(--gold);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 2px;
+}
+
+@media (max-width: 900px) {
+  .hero {
+    grid-template-columns: 1fr;
+    gap: 32px;
+    padding-top: 44px;
+  }
+
+  .demo ::ng-deep .code {
+    transform: none;
+  }
+}

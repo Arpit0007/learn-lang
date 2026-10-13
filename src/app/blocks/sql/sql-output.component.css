@@ -1,0 +1,20 @@
+:host { display: block; }
+.grid-wrap { overflow-x: auto; margin: 4px 0 2px; }
+/* :host raises specificity above the site-wide lesson table styles (light header bar, caps, full width). */
+:host table { width: auto; border-collapse: collapse; font-family: var(--mono); font-size: 12.5px; color: #CFD8E0; background: none; }
+:host table th, :host table td {
+  text-align: left; padding: 3px 18px 3px 0; white-space: pre; vertical-align: top;
+  border-bottom: 1px solid rgba(255, 255, 255, .07);
+}
+:host table thead th {
+  background: none; color: #F2C31B; font-weight: 600; text-transform: none; letter-spacing: normal;
+  font-size: 12.5px; border-bottom-color: rgba(255, 255, 255, .22);
+}
+:host table td.null { color: #6D7B87; font-style: italic; }
+:host table tbody tr:last-child td { border-bottom: 0; }
+.line { font-family: var(--mono); font-size: 12.5px; line-height: 1.7; white-space: pre-wrap; word-break: break-word; }
+.line.ok { color: #9EDA8F; }
+.line.warn { color: #E7B067; }
+.line.err { color: #F0857E; }
+.line.sub { padding-left: 2ch; }
+.line.muted { color: #6D7B87; margin-bottom: 6px; }

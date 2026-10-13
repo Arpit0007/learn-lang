@@ -1,0 +1,62 @@
+@let b = block();
+@switch (b.kind) {
+  @case ('heading') {
+    @switch (b.level) {
+      @case (2) { <h2><ll-rich [text]="b.text" /></h2> }
+      @case (3) { <h3><ll-rich [text]="b.text" /></h3> }
+      @default { <h4><ll-rich [text]="b.text" /></h4> }
+    }
+  }
+  @case ('text') { <p [class]="b.style ?? ''"><ll-rich [text]="b.text" /></p> }
+  @case ('list') {
+    @if (b.ordered) {
+      <ol>@for (item of b.items; track $index) { <li><ll-rich [text]="item" /></li> }</ol>
+    } @else {
+      <ul>@for (item of b.items; track $index) { <li><ll-rich [text]="item" /></li> }</ul>
+    }
+  }
+  @case ('table') {
+    <div class="tw">
+      <table>
+        <thead><tr>@for (h of b.head; track $index) { <th><ll-rich [text]="h" /></th> }</tr></thead>
+        <tbody>
+          @for (row of b.rows; track $index) {
+            <tr>@for (cell of row; track $index) { <td><ll-rich [text]="cell" /></td> }</tr>
+          }
+        </tbody>
+      </table>
+    </div>
+  }
+  @case ('callout') {
+    <div class="callout" [class]="'callout ' + b.tone">
+      @if (b.title) { <p class="ct"><ll-rich [text]="b.title" /></p> }
+      @for (child of b.blocks; track $index) { <ll-block [block]="child" [course]="course()" /> }
+    </div>
+  }
+  @case ('example') { <ll-code-block [block]="b" [course]="course()" /> }
+  @case ('quiz') { <ll-quiz [quiz]="b" /> }
+  @case ('exercise') { <ll-exercise [block]="b" /> }
+  @case ('reveal') {
+    <details>
+      <summary>
+        @if (b.tag) { <span class="tag" [class.qa]="isInterview(b.tag)">{{ b.tag }}</span> }
+        <ll-rich [text]="b.title" />
+      </summary>
+      <div class="body">
+        @for (child of b.blocks; track $index) { <ll-block [block]="child" [course]="course()" /> }
+      </div>
+    </details>
+  }
+  @case ('figure') { <ll-figure [figure]="b" /> }
+  @case ('cards') {
+    <div class="projgrid">
+      @for (card of b.cards; track $index) {
+        <div class="proj">
+          <h4><ll-rich [text]="card.title" /></h4>
+          @if (card.tags) { <p class="tags">{{ card.tags }}</p> }
+          <p><ll-rich [text]="card.text" /></p>
+        </div>
+      }
+    </div>
+  }
+}

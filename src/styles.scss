@@ -1,0 +1,42 @@
+@use '@angular/material' as mat;
+@use 'styles/tokens';
+@use 'styles/content';
+
+// Material 3 reads its colours and fonts from --sys-* CSS variables, which are
+// pointed at the Ladder tokens below — so Material follows light/dark for free.
+$theme: mat.define-theme((
+  color: (theme-type: light, primary: mat.$yellow-palette, use-system-variables: true),
+  typography: (brand-family: 'Bricolage Grotesque', plain-family: 'Bricolage Grotesque', use-system-variables: true),
+  density: (scale: 0),
+));
+
+html {
+  @include mat.all-component-themes($theme);
+  @include mat.system-level-colors($theme);
+  @include mat.system-level-typography($theme);
+
+  --sys-primary: var(--gold);
+  --sys-on-primary: #111;
+  --sys-primary-container: var(--gold-wash);
+  --sys-on-primary-container: var(--gold-ink);
+  --sys-surface: var(--surface);
+  --sys-surface-container: var(--surface-2);
+  --sys-surface-container-low: var(--surface);
+  --sys-surface-container-high: var(--surface-2);
+  --sys-surface-container-highest: var(--surface-2);
+  --sys-on-surface: var(--ink);
+  --sys-on-surface-variant: var(--ink-soft);
+  --sys-outline: var(--line);
+  --sys-outline-variant: var(--line-soft);
+  --sys-error: var(--warn);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--display);
+  -webkit-font-smoothing: antialiased;
+}
+:focus-visible { outline: 2px solid var(--gold-ink); outline-offset: 2px; border-radius: 2px; }

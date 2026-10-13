@@ -1,0 +1,32 @@
+@let ex = block().exercise;
+<div class="ex" [class.done]="verdict() === 'correct'">
+  <p class="qt">Exercise</p>
+  <p class="q"><ll-rich [text]="ex.prompt" /></p>
+
+  @if (ex.type === 'fill_code') {
+    <!-- Kept on one line: whitespace inside <pre> is rendered. -->
+    <pre class="snippet"><code>@for (part of parts(); track $index) {{{ part }}@if ($index < parts().length - 1) {<input type="text" spellcheck="false" autocomplete="off" autocapitalize="off" [attr.aria-label]="'Gap ' + ($index + 1)" [style.width.ch]="widths()[$index]" [class.bad]="verdict() === 'wrong' && !gapOk($index)" [disabled]="verdict() === 'correct'" [value]="gaps()[$index]" (input)="setGap($index, $any($event.target).value)" (keydown.enter)="check()" />}}</code></pre>
+  } @else {
+    <div class="opts" role="radiogroup" [attr.aria-label]="'Options'">
+      @for (opt of options(); track opt) {
+        <button type="button" role="radio" [attr.aria-checked]="choice() === opt"
+                [class.picked]="choice() === opt" [disabled]="verdict() === 'correct'" (click)="pick(opt)">
+          <ll-rich [text]="opt" />
+        </button>
+      }
+    </div>
+  }
+
+  <div class="actions">
+    @if (verdict() !== 'correct') {
+      <button type="button" class="check" [disabled]="!ready()" (click)="check()">Check</button>
+    }
+    @switch (verdict()) {
+      @case ('correct') { <span class="msg ok" role="status">✓ Correct!</span> }
+      @case ('wrong') {
+        <span class="msg no" role="status">Not quite — try again.</span>
+        <button type="button" class="link" (click)="showAnswer()">Show answer</button>
+      }
+    }
+  </div>
+</div>

@@ -1,0 +1,15 @@
+<ng-template #segs let-list>
+  @for (s of list; track $index) {
+    @switch (s.type) {
+      @case ('text') {{{ s.text }}}
+      @case ('code') {<code>{{ s.text }}</code>}
+      @case ('strong') {<strong><ng-container *ngTemplateOutlet="segs; context: { $implicit: s.children }" /></strong>}
+      @case ('em') {<em><ng-container *ngTemplateOutlet="segs; context: { $implicit: s.children }" /></em>}
+      @case ('link') {
+        @if (href(s.href); as h) {<a [href]="h" target="_blank" rel="noopener"><ng-container *ngTemplateOutlet="segs; context: { $implicit: s.children }" /></a>}
+        @else {<ng-container *ngTemplateOutlet="segs; context: { $implicit: s.children }" />}
+      }
+    }
+  }
+</ng-template>
+<ng-container *ngTemplateOutlet="segs; context: { $implicit: segments() }" />

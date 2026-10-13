@@ -1,0 +1,25 @@
+@for (r of results(); track $index) {
+  @for (n of r.notices; track $index) { <div class="line warn">NOTICE: {{ n }}</div> }
+  @if (r.error) {
+    <div class="line err">ERROR: {{ r.error.message }}</div>
+    @if (r.error.detail) { <div class="line err sub">DETAIL: {{ r.error.detail }}</div> }
+    @if (r.error.hint) { <div class="line err sub">HINT: {{ r.error.hint }}</div> }
+    @if (results().length > 1 || r.index > 1) { <div class="line muted">(in statement {{ r.index }}; statements after it did not run)</div> }
+  } @else if (r.fields.length) {
+    <div class="grid-wrap">
+      <table>
+        <thead><tr>@for (f of r.fields; track $index) { <th>{{ f }}</th> }</tr></thead>
+        <tbody>
+          @for (row of r.rows.slice(0, max); track $index) {
+            <tr>@for (cell of row; track $index) {
+              @if (cell === null) { <td class="null">NULL</td> } @else { <td>{{ cell }}</td> }
+            }</tr>
+          }
+        </tbody>
+      </table>
+    </div>
+    <div class="line muted">({{ r.rows.length }} {{ r.rows.length === 1 ? 'row' : 'rows' }}{{ r.rows.length > max ? '; first ' + max + ' shown' : '' }})</div>
+  } @else {
+    <div class="line ok">✓ {{ r.summary }}</div>
+  }
+}

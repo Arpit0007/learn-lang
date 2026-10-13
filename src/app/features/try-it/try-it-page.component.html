@@ -1,0 +1,34 @@
+@if (example(); as ex) {
+  <div class="tryit">
+    <div class="bar">
+      <a class="back" [href]="lessonUrl()" (click)="back($event)">← Back to “{{ lessonTitle() }}”</a>
+      <span class="spacer"></span>
+      <button type="button" class="btn" (click)="reset()">↺ Reset</button>
+      <button type="button" class="btn run" (click)="run()" title="Run (Ctrl+Enter)">▶ Run</button>
+    </div>
+    <div class="panes">
+      <section class="pane code-pane" aria-label="Code">
+        <div class="pane-head">{{ ex.label || 'index.html' }}</div>
+        <ll-code-editor class="fill" [code]="code()" [lang]="ex.lang ?? course()!.exampleLang" [readonly]="false"
+                        (codeChange)="code.set($event)" />
+      </section>
+      <section class="pane result-pane" aria-label="Result">
+        <div class="pane-head result-head">
+          <span>Result</span>
+          <span class="sizes" role="group" aria-label="Preview width">
+            @for (s of sizes; track s.label) {
+              <button type="button" [attr.aria-pressed]="width() === s.px" (click)="width.set(s.px)">{{ s.label }}</button>
+            }
+          </span>
+          <span class="px">{{ width() ? width() + ' px' : '' }}</span>
+        </div>
+        <div class="stage" [class.framed]="width() !== null">
+          <iframe title="Result" sandbox="allow-scripts allow-modals allow-forms allow-popups allow-popups-to-escape-sandbox"
+                  [style.width]="width() ? width() + 'px' : '100%'" [srcdoc]="srcdoc()"></iframe>
+        </div>
+      </section>
+    </div>
+  </div>
+} @else if (missing()) {
+  <ll-not-found />
+}

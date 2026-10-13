@@ -1,0 +1,22 @@
+@if (entries().length) {
+  <nav aria-label="On this page">
+    <p class="title">On this page</p>
+    <ul>
+      @for (e of entries(); track e.id) {
+        <li>
+          <button
+            type="button"
+            [class.on]="active() === e.id"
+            [attr.aria-current]="active() === e.id ? 'location' : null"
+            (click)="go(e.id)"
+          >
+            @if (e.tag) {
+              <span class="tag">{{ e.tag }}</span>
+            }
+            <span>{{ e.label }}</span>
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+}

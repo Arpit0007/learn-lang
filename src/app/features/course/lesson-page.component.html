@@ -1,0 +1,47 @@
+@if (course(); as c) {
+  @if (lesson(); as l) {
+    @let pos = position();
+    @let nb = nav();
+    @for (current of [l]; track current.slug) {
+      <div class="page">
+        <article class="lesson">
+          <header class="head">
+            <p class="where">
+              @if (pos.group) { <span>{{ pos.group.title }}</span> }
+              <span class="count">Lesson {{ pos.index + 1 }} of {{ pos.total }}</span>
+            </p>
+            <h1><ll-rich [text]="current.title" /></h1>
+            @if (meta(current); as m) { <p class="meta">{{ m }}</p> }
+            <nav class="mini" aria-label="Lesson">
+              @if (nb.prev; as p) { <a [routerLink]="['/', c.slug, p.slug]">‹ {{ label(p) }}</a> } @else { <span></span> }
+              @if (nb.next; as n) { <a class="fwd" [routerLink]="['/', c.slug, n.slug]">{{ label(n) }} ›</a> }
+            </nav>
+          </header>
+
+          @for (b of current.blocks; track $index) {
+            @if (anchors().has($index)) { <span class="anchor" [id]="'sec-' + $index"></span> }
+            <ll-block [block]="b" [course]="c" />
+          }
+
+          <nav class="pager" aria-label="Previous and next lesson">
+            @if (nb.prev; as p) {
+              <a class="card prev" [routerLink]="['/', c.slug, p.slug]">
+                <span class="dir">‹ Previous</span><span class="name"><ll-rich [text]="p.title" /></span>
+              </a>
+            } @else { <span></span> }
+            @if (nb.next; as n) {
+              <a class="card next" [routerLink]="['/', c.slug, n.slug]">
+                <span class="dir">Next ›</span><span class="name"><ll-rich [text]="n.title" /></span>
+              </a>
+            } @else {
+              <div class="card end"><span class="dir">You've reached the top</span><span class="name">That's the whole ladder. Well climbed.</span></div>
+            }
+          </nav>
+        </article>
+        <aside class="side"><ll-lesson-toc [entries]="toc()" /></aside>
+      </div>
+    }
+  } @else if (missing()) {
+    <ll-not-found />
+  }
+}

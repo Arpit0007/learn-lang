@@ -1,0 +1,13 @@
+:host { position: sticky; top: 0; z-index: 20; display: block; }
+.bar {
+  height: var(--topbar); gap: 18px; background: var(--surface); color: var(--ink);
+  border-bottom: 1px solid var(--line); padding: 0 16px;
+}
+.brand { color: var(--ink); text-decoration: none; font-family: var(--display); font-weight: 800; font-size: 1.15rem; letter-spacing: -.01em; white-space: nowrap; }
+.langs { flex: 1; display: flex; gap: 4px; overflow-x: auto; scrollbar-width: none; }
+.langs a {
+  font-family: var(--mono); font-size: 12px; letter-spacing: .08em; text-transform: uppercase; text-decoration: none;
+  color: var(--ink-soft); padding: 6px 10px; border-radius: 5px; white-space: nowrap; border-bottom: 2px solid transparent;
+}
+.langs a:hover { color: var(--ink); background: var(--surface-2); }
+.langs a.on { color: var(--ink); border-bottom-color: var(--gold); font-weight: 600; }

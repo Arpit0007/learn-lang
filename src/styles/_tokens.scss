@@ -1,0 +1,61 @@
+// Design tokens from "The JavaScript Ladder". Light by default; dark follows the
+// system setting unless the reader picked a theme (data-theme on <html>).
+
+@mixin dark-tokens {
+  --bg: #0E1216;
+  --surface: #161C22;
+  --surface-2: #1C242B;
+  --code-bg: #0A0E12;
+  --code-ink: #DCE3E9;
+  --ink: #E6ECF1;
+  --ink-soft: #9DAAB5;
+  --ink-faint: #78848E;
+  --line: #293238;
+  --line-soft: #20282E;
+  --gold: #F2C31B;
+  --gold-ink: #F0C64B;
+  --gold-wash: #2A2415;
+  --warn: #E79A62;
+  --warn-wash: #2C1F17;
+  --ok: #57CE9A;
+  --ok-wash: #122A21;
+  --shadow: 0 1px 2px rgba(0, 0, 0, .4), 0 10px 30px -20px rgba(0, 0, 0, .9);
+}
+
+:root {
+  color-scheme: light;
+  --bg: #E7EAED;
+  --surface: #FFFFFF;
+  --surface-2: #F1F4F6;
+  --code-bg: #12171C;
+  --code-ink: #DCE3E9;
+  --ink: #11161B;
+  --ink-soft: #4E5A65;
+  --ink-faint: #77838E;
+  --line: #C8D0D7;
+  --line-soft: #DDE3E8;
+  --gold: #F2C31B;
+  --gold-ink: #7A5600;
+  --gold-wash: #FBF0C8;
+  --warn: #A8481A;
+  --warn-wash: #F8E5D9;
+  --ok: #15694A;
+  --ok-wash: #D8EEE4;
+  --shadow: 0 1px 2px rgba(17, 22, 27, .06), 0 8px 24px -18px rgba(17, 22, 27, .5);
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "Newsreader", Georgia, "Times New Roman", serif;
+  --mono: "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --rail: 270px;
+  --topbar: 56px;
+}
+
+:root:not([data-theme="light"]) { color-scheme: light dark; }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) { @include dark-tokens; }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  @include dark-tokens;
+}

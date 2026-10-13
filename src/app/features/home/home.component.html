@@ -1,0 +1,54 @@
+<section class="hero">
+  <div class="pitch">
+    <h1>Learn to code, one rung at a time.</h1>
+    <p class="lede">
+      Short lessons with examples you can change and run, or predict and check,
+      right here in your browser. No sign-up.
+    </p>
+    @if (cta(); as c) {
+      <a class="cta" [routerLink]="c.link">{{ c.label }}</a>
+    }
+  </div>
+  <div class="demo">
+    <ll-code-block [block]="tryMe" [course]="heroCourse" />
+    <p class="hint">
+      Press <strong>Run ▸</strong>, then <strong>Edit</strong> and change the
+      name.
+    </p>
+  </div>
+</section>
+
+<section class="courses" aria-labelledby="courses-title">
+  <h2 id="courses-title">Courses</h2>
+  <div class="grid">
+    @for (c of courses.entries; track c.slug) {
+      <article class="course">
+        <h3>{{ c.menuLabel }}</h3>
+        <p>{{ c.description }}</p>
+        @if (resume()[c.slug]; as r) {
+          <div
+            class="meter"
+            role="progressbar"
+            [attr.aria-label]="c.menuLabel + ' progress'"
+            [attr.aria-valuenow]="r.done"
+            aria-valuemin="0"
+            [attr.aria-valuemax]="r.total"
+          >
+            <span [style.width.%]="(r.done / r.total) * 100"></span>
+          </div>
+          <p class="progress">{{ r.done }} of {{ r.total }} lessons finished</p>
+          @if (r.next) {
+            <a class="go" [routerLink]="['/', c.slug, r.next.slug]"
+              >Continue: {{ r.next.num ? r.next.num + " " : ""
+              }}{{ r.next.nav ?? r.next.title }}</a
+            >
+          } @else {
+            <a class="go" [routerLink]="['/', c.slug]">Review the course</a>
+          }
+        } @else {
+          <a class="go" [routerLink]="['/', c.slug]">Start learning</a>
+        }
+      </article>
+    }
+  </div>
+</section>

@@ -1,0 +1,12 @@
+<mat-toolbar class="bar">
+  <a routerLink="/" class="brand">🦜 LinguaLeap</a>
+  <nav class="langs" aria-label="Courses">
+    @for (c of courses.entries; track c.slug) {
+      <a [routerLink]="['/', c.slug]" routerLinkActive="on" ariaCurrentWhenActive="page">{{ c.menuLabel }}</a>
+    }
+  </nav>
+  <button mat-icon-button type="button" (click)="theme.toggle()"
+          [attr.aria-label]="theme.isDark() ? 'Switch to light theme' : 'Switch to dark theme'">
+    <mat-icon>{{ theme.isDark() ? 'light_mode' : 'dark_mode' }}</mat-icon>
+  </button>
+</mat-toolbar>

@@ -1,0 +1,11 @@
+<figure class="fig" [attr.data-motion]="figure().animated ? (playing() ? 'on' : 'off') : null">
+  <div [innerHTML]="svg()"></div>
+  @if (figure().caption) {
+    <figcaption><ll-rich [text]="figure().caption" /></figcaption>
+  }
+  @if (figure().animated) {
+    <button type="button" class="playbtn" [attr.aria-pressed]="playing()" (click)="playing.set(!playing())">
+      {{ playing() ? '❚❚ Pause' : '▶ Play' }}
+    </button>
+  }
+</figure>

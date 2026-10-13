@@ -1,0 +1,33 @@
+.ex { margin: 22px 0; padding: 16px; border: 1px solid var(--line); border-radius: 8px; background: var(--surface); }
+.ex.done { border-color: var(--ok); }
+.qt { font-family: var(--mono); font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: var(--ink-faint); margin: 0 0 8px; }
+.q { font-family: var(--display); font-weight: 600; font-size: 16px; margin: 0 0 12px; }
+.snippet {
+  margin: 0 0 12px; padding: 12px 14px; border-radius: 6px; background: var(--code-bg); color: var(--code-ink);
+  font-family: var(--mono); font-size: 13.5px; line-height: 2; white-space: pre-wrap; overflow-x: auto;
+}
+.snippet code { font: inherit; background: none; border: 0; padding: 0; white-space: inherit; }
+.snippet input {
+  font: inherit; color: #111; background: #FBF0C8; border: 2px solid var(--gold); border-radius: 4px;
+  padding: 0 4px; min-width: 3ch; line-height: 1.4;
+}
+.snippet input.bad { border-color: var(--warn); background: #F8E5D9; }
+.snippet input:disabled { border-color: var(--ok); background: #D8EEE4; }
+.opts { display: flex; flex-direction: column; gap: 7px; margin-bottom: 12px; }
+.opts button {
+  text-align: left; font-family: var(--mono); font-size: 13px; padding: 9px 12px; border-radius: 6px;
+  border: 1px solid var(--line); background: var(--surface-2); color: var(--ink); cursor: pointer; line-height: 1.5;
+}
+.opts button.picked { border-color: var(--gold-ink); background: var(--gold-wash); }
+.opts button:disabled { cursor: default; }
+.actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+.check {
+  font-family: var(--display); font-weight: 700; font-size: 14px; padding: 7px 16px; border-radius: 6px; cursor: pointer;
+  border: 1px solid var(--gold); background: var(--gold); color: #111;
+}
+.check:disabled { opacity: .5; cursor: default; }
+.msg { font-family: var(--display); font-weight: 600; font-size: 14px; }
+.msg.ok { color: var(--ok); }
+.msg.no { color: var(--warn); }
+.link { background: none; border: 0; padding: 0; font-family: var(--display); font-size: 14px; color: var(--ink-soft);
+        text-decoration: underline; text-decoration-color: var(--gold); text-underline-offset: 3px; cursor: pointer; }

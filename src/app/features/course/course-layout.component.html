@@ -1,0 +1,88 @@
+@switch (state().status) {
+  @case ("loading") {
+    <p class="status">Loading…</p>
+  }
+  @case ("missing") {
+    <ll-not-found />
+  }
+  @case ("error") {
+    <div class="status">
+      <p>Couldn't load this course. Check your connection and reload.</p>
+      <button mat-flat-button type="button" (click)="reload()">Reload</button>
+    </div>
+  }
+  @case ("ready") {
+    @let c = course()!;
+    <div class="shell">
+      <button
+        type="button"
+        class="menu-btn"
+        (click)="drawerOpen.set(true)"
+        aria-controls="course-nav"
+        [attr.aria-expanded]="drawerOpen()"
+      >
+        <mat-icon>menu</mat-icon> Lessons
+        <span class="menu-count">{{ doneCount() }}/{{ total() }}</span>
+      </button>
+      @if (drawerOpen()) {
+        <div class="backdrop" (click)="drawerOpen.set(false)"></div>
+      }
+
+      <aside
+        id="course-nav"
+        class="rail"
+        [class.open]="drawerOpen()"
+        aria-label="Lessons"
+      >
+        <div class="rail-head">
+          <p class="rail-title">{{ c.title }}</p>
+          <div
+            class="meter"
+            role="progressbar"
+            aria-label="Course progress"
+            [attr.aria-valuenow]="doneCount()"
+            aria-valuemin="0"
+            [attr.aria-valuemax]="total()"
+          >
+            <span
+              [style.width.%]="total() ? (doneCount() / total()) * 100 : 0"
+            ></span>
+          </div>
+          <p class="meter-label">
+            {{ doneCount() }} of {{ total() }} lessons finished
+          </p>
+        </div>
+        <nav>
+          @for (g of c.groups; track g.title) {
+            <p
+              class="grp"
+              [class.past]="indexOf(g.lessons[0].slug) <= furthest()"
+            >
+              {{ g.title }}
+            </p>
+            @for (l of g.lessons; track l.slug) {
+              @let done = progress.isDone(c.slug, l.slug);
+              <a
+                [routerLink]="['/', c.slug, l.slug]"
+                routerLinkActive="on"
+                ariaCurrentWhenActive="page"
+                [class.done]="done"
+                [class.past]="indexOf(l.slug) <= furthest()"
+                (click)="drawerOpen.set(false)"
+              >
+                <span class="rung" aria-hidden="true"></span>
+                <span class="n">{{ l.num ?? "" }}</span>
+                <span class="t">{{ l.nav ?? l.title }}</span>
+                @if (done) {
+                  <span class="sr">(finished)</span>
+                }
+              </a>
+            }
+          }
+        </nav>
+      </aside>
+
+      <div class="doc"><router-outlet /></div>
+    </div>
+  }
+}
