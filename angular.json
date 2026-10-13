@@ -6,7 +6,7 @@
     "analytics": false
   },
   "projects": {
-    "lingualeap": {
+    "learn-language": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/lingualeap",
+            "outputPath": "dist/learn-language",
             "index": "src/index.html",
             "browser": "src/main.ts",
             "polyfills": [
@@ -60,10 +60,10 @@
           },
           "configurations": {
             "production": {
-              "buildTarget": "lingualeap:build:production"
+              "buildTarget": "learn-language:build:production"
             },
             "development": {
-              "buildTarget": "lingualeap:build:development"
+              "buildTarget": "learn-language:build:development"
             }
           },
           "defaultConfiguration": "development"

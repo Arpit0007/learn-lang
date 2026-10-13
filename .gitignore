@@ -1,0 +1,9 @@
+node_modules
+dist
+tmp
+.angular
+coverage
+*.log
+.env
+.DS_Store
+.playwright-mcp
